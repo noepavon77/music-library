@@ -1,4 +1,5 @@
-* {
+* 
+{
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -7,7 +8,7 @@
 
         body {
             margin: 20px;
-            background-color: #fdf9f9;
+            background-color: #070707f8;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -60,7 +61,7 @@
             width: 100%;
             max-height: 150px;
             overflow-y: auto;
-            background-color: #ffffff;
+            background-color: #0f0f0f;
             border: 1px solid #ccc;
             border-radius: 5px;
             display: none;
@@ -71,22 +72,41 @@
             padding: 10px;
             cursor: pointer;
             font-size: 18px;
-            color: #333;
+            color: #fdf8f8;
         }
 
         .dropdown-item:hover,
         .dropdown-item.active {
-            background-color: #e0e0e0;
+            background-color: #4e4d4d3d;
         }
 
         .show {
             display: block;
         }
 
-        #results,
+        #results{
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+        }
+        
         #artistInfo {
             width: 100%;
             max-width: 500px;
+        }
+        
+
+        .music-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #0d0e0d;
+            border: 1px solid #c6dfc57a;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgb(244, 247, 243);
         }
 
         .music-card {
@@ -95,18 +115,26 @@
             align-items: center;
             margin-bottom: 20px;
             padding: 20px;
-            background-color: #fafafa;
-            border: 1px solid #8d8b8b;
+            background-color: #1a1919;
+            border: 2px solid transparent;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgb(200, 200, 200);
+            box-shadow: 0 0 15px rgba(211, 206, 206, 0.6), 0 0 30px rgba(161, 160, 160, 0.4);
+            transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
         }
-
+        
+        .music-card:hover {
+            border: 2px solid #dcecce;
+            box-shadow: 0 0 25px rgb(206, 233, 145), 0 0 50px rgba(255, 255, 255, 0.7);
+        }
+        
         .music-card img {
             width: 100%;
             height: auto;
             max-width: 300px;
             margin: 30px 0;
         }
+        
+        
 
         .album-info {
             display: flex;
@@ -118,12 +146,13 @@
         .album-title {
             font-size: 2em;
             margin: 0;
+            color: white;
         }
 
         .artist-name {
             font-size: 1em;
-            color: gray;
-            margin-left: 10px;
+            color: rgb(112, 110, 110);
+            margin-left: 20px;
         }
 
         .album-cover {
@@ -134,6 +163,7 @@
         .album-description {
             margin-top: 25px;
             text-align: justify;
+            color: white;
         }
 
         .song-info {
@@ -142,14 +172,18 @@
             justify-content: space-between;
             width: 100%;
             font-weight: bold;
+            color: white;
         }
 
         .song-title {
             margin-right: 10px;
+            color: white;
+
         }
 
         .song-length {
             margin-left: 10px;
+            color: white;
         }
 
         #searchButton {
@@ -170,6 +204,7 @@
         .header__title {
             margin-bottom: var(--margin-3);
             font-size: clamp(1rem, 6vw, 2rem);
+            color: white;
         }
 
         /* 3D Carousel */
@@ -192,11 +227,11 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            background-color: #000;
-            border: 1px solid #fff;
+            background-color: #eee8e8;
+            border: 1px solid #0f0f0f;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(230, 167, 167, 0.5);
+            box-shadow: 0 0 10px rgba(223, 228, 223, 0.5);
             transition: transform 0.5s;
         }
 

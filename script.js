@@ -118,18 +118,29 @@ input.addEventListener("keydown", (e) => {
         e.preventDefault();
         selectedIndex = (selectedIndex - 1 + items.length) % items.length;
         updateActiveItem(items);
-    } else if (e.keyCode == 13 && selectedIndex > -1) {
+    } else if (e.keyCode === 13) { // Si la tecla presionada es Enter
         e.preventDefault();
-        input.value = items[selectedIndex].textContent;
-        clearSuggestion();
-        clearDropdown();
-    } else if ((e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 39) && suggestion.textContent !== "") {
+        if (selectedIndex > -1) {
+            input.value = items[selectedIndex].textContent;
+            clearSuggestion();
+            clearDropdown();
+        } else if (suggestion.textContent !== "") {
+            input.value = input.value + suggestion.textContent.trim();
+            clearSuggestion();
+            clearDropdown();
+        }
+        // Simular clic en el botón de búsqueda
+        searchButton.click();
+    } else if (e.keyCode === 32 || e.keyCode === 39) { // Espacio o flecha derecha
         e.preventDefault();
-        input.value = input.value + suggestion.textContent.trim();
-        clearSuggestion();
-        clearDropdown();
+        if (suggestion.textContent !== "") {
+            input.value = input.value + suggestion.textContent.trim();
+            clearSuggestion();
+            clearDropdown();
+        }
     }
 });
+
 
 const updateActiveItem = (items) => {
     items.forEach((item, index) => {
@@ -160,6 +171,12 @@ searchButton.addEventListener("click", () => {
     clearDropdown();
 
     let query = input.value.toLowerCase().trim();
+    
+    if (query.length === 0) {
+        results.innerHTML = "Please enter a valid search query."
+        results.style.display = "block";
+        return;
+    }
 
     let foundArtist = artists.find(artist => artist.name.toLowerCase() === query);
     if (foundArtist) {
@@ -210,10 +227,11 @@ const displayArtistInfo = (artist) => {
     artist.albums.forEach(album => {
         artistInfo.innerHTML += `
         <div class="music-card">
-            <img src="${album.coverImage}" alt="${album.title}" />
+            <img src="${album.coverImage}" />
             <div>
-                <h3>${album.title}</h3>
-                <p>${album.description}</p>
+            <h3 class="album-title">${album.title}</h3>
+            <div class="album-description">
+                <span class="album-description">${album.description}</span>
             </div>
             ${album.songs.map(song => `
                 <div class="song-info">
@@ -235,7 +253,7 @@ const displayAlbumInfo = (album) => {
         </div>
         <img src="${album.album.coverImage}" />
         <div>
-            <p>${album.album.description}</p>
+        <span class="album-description">${album.album.description}</span>
         </div>
         ${album.album.songs.map(song => `
             <div class="song-info">
@@ -251,17 +269,20 @@ const displaySongInfo = (song) => {
     artistInfo.innerHTML = `
     <div class="music-card">
         <div class="album-info">
-            <h1 class="album-title">${song.album.title}</h1> 
-            <span class="artist-name">by ${song.artist}</span>
+        <span class="album-title">  ${song.song.title}</span>
         </div>
+        
         <img src="${song.album.coverImage}" class="album-cover" />
+        <div class="song-info">
+        
+        <h1 class="album-title">Album ${song.album.title}</h1> 
+        <span class="artist-name"> by ${song.artist}</span> 
+           
+        </div>
         <div class="album-description">
             <p>${song.album.description}</p> 
         </div>
-        <div class="song-info">
-            <span class="song-title">${song.song.title}</span>
-            <span class="song-length">${song.song.length}</span>
-        </div>
+        
     </div>`;
     artistInfo.style.display = "block";
 };
