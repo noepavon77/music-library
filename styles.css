@@ -1,0 +1,217 @@
+* {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            margin: 20px;
+            background-color: #fdf9f9;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-container {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        input {
+            outline: none;
+            border: none;
+            background-color: transparent;
+            color: #000000;
+            font-size: 20px;
+            flex: 1;
+        }
+
+        #suggestion {
+            width: inherit;
+            height: inherit;
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 20px;
+            color: #868686;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+            z-index: 1;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item.active {
+            background-color: #e0e0e0;
+        }
+
+        .show {
+            display: block;
+        }
+
+        #results,
+        #artistInfo {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .music-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fafafa;
+            border: 1px solid #8d8b8b;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgb(200, 200, 200);
+        }
+
+        .music-card img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            margin: 30px 0;
+        }
+
+        .album-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .album-title {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .artist-name {
+            font-size: 1em;
+            color: gray;
+            margin-left: 10px;
+        }
+
+        .album-cover {
+            margin: 30px 0;
+            max-width: 100%;
+        }
+
+        .album-description {
+            margin-top: 25px;
+            text-align: justify;
+        }
+
+        .song-info {
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .song-title {
+            margin-right: 10px;
+        }
+
+        .song-length {
+            margin-left: 10px;
+        }
+
+        #searchButton {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #196445;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #searchButton:hover {
+            background-color: #00b37d;
+        }
+
+        .header__title {
+            margin-bottom: var(--margin-3);
+            font-size: clamp(1rem, 6vw, 2rem);
+        }
+
+        /* 3D Carousel */
+        .carousel {
+            width: 100%;
+            max-width: 300px;
+            perspective: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-inner {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+
+        .carousel-item {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #000;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(230, 167, 167, 0.5);
+            transition: transform 0.5s;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
