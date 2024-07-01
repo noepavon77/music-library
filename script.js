@@ -226,23 +226,33 @@ const displayArtistInfo = (artist) => {
     artistInfo.innerHTML = `<h1 class="header__title">${artist.name}</h1>`;
     artist.albums.forEach(album => {
         artistInfo.innerHTML += `
-        <div class="music-card">
-            <img src="${album.coverImage}" />
-            <div>
-            <h3 class="album-title">${album.title}</h3>
-            <div class="album-description">
-                <span class="album-description">${album.description}</span>
-            </div>
-            ${album.songs.map(song => `
-                <div class="song-info">
-                    <span class="song-title">${song.title}</span>
-                    <span class="song-length">${song.length}</span>
+            <div class="card-container">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-face card-front">
+                            
+                            <img src="${album.coverImage}" alt="${album.title} cover"/>
+                            <div>
+                            <span class="album-description">${album.description}</span>
+                            </div>
+                        </div>
+                        <div class="card-face card-back">
+                            <h1>Song</h1>
+                            ${album.songs.map(song => `
+                                <div class="song-info">
+                                    <span class="song-title">${song.title}</span>
+                                    <span class="song-length">${song.length}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
                 </div>
-            `).join('')}
-        </div>`;
+            </div>`;
     });
     artistInfo.style.display = "block";
 };
+
+        
 
 const displayAlbumInfo = (album) => {
     artistInfo.innerHTML = `

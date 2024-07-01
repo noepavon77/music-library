@@ -1,20 +1,118 @@
 * 
-{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
-        }
+/*fORMATO DE PAGINA*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-        body {
-            margin: 20px;
-            background-color: #070707f8;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #111;
+    color: #e2d7d7;
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+  }
+  .content {
+    text-align: center;
+    max-width: 800px; /* Ancho máximo del contenido */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
+  .header {
+    background-color: #333;
+    padding: 15px 0;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header-logo img {
+    width: 100px;
+    height: auto;
+  }
+
+  .header-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-nav li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .header-nav a {
+    text-decoration: none;
+    color: #eee;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+
+
+  .main {
+    flex: 1;
+    padding: 20px;
+    margin: 20px;
+    background-color: #080808;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /*PIE*/
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    padding: 20px 0;
+    color: #eee;
+    text-align: center;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-nav li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .footer-nav a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .footer-nav a:hover {
+    text-decoration: underline;
+  }
+/*INPUT*/
         .input-container {
             display: flex;
             margin-bottom: 20px;
@@ -23,6 +121,7 @@
             max-width: 500px;
         }
 
+        
         .input-wrapper {
             display: flex;
             align-items: center;
@@ -135,7 +234,6 @@
         }
         
         
-
         .album-info {
             display: flex;
             justify-content: space-between;
@@ -187,13 +285,11 @@
         }
 
         #searchButton {
-            margin-left: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
             border: none;
-            background-color: #196445;
-            color: #ffffff;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
         }
 
@@ -250,3 +346,89 @@
                 transform: rotateY(360deg);
             }
         }
+        /* card artista*/
+        .card-container {
+            width: 500px; /* Ancho específico de la tarjeta */
+            height: 900px; /* Altura específica de la tarjeta */
+            perspective: 1000px;
+            margin: 30px auto; /* Centra horizontalmente el contenedor */
+        }
+        
+        .card {
+            width: 500px; /* Ancho específico de la tarjeta */
+            height: 900px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            margin-bottom: 50px; /* Espacio entre cada tarjeta */
+        }
+        
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column; /* Para colocar la imagen encima y el texto debajo */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            backface-visibility: hidden;
+            border-radius: 8px;
+        }
+        
+        .card-front {
+            background-color: #f2f2f2;
+            color: white;
+            z-index: 1; /* Coloca la cara frontal encima de la cara trasera */
+        }
+        
+        .card-back {
+            background-color: #cccccc;
+            color: white;
+            transform: rotateY(180deg);
+            z-index: 0; /* Coloca la cara trasera detrás de la cara frontal */
+        }
+        
+        .card-face img {
+            width: 100%;
+            height: auto; /* Ajusta la altura automáticamente */
+            max-height: calc(100% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
+            object-fit: contain; /* Ajusta la imagen para que quepa completamente dentro del contenedor sin recortar */
+            border-radius: 8px; /* Redondea las esquinas de la imagen para que coincidan con las esquinas de la tarjeta */
+            margin-bottom: 20px; /* Espacio entre la imagen y la descripción */
+        }
+        
+        .card-back-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .card-back p {
+            margin: 10px 0; /* Espacio entre los párrafos */
+        }
+        
+        
+        
