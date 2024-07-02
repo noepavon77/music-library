@@ -1,0 +1,15 @@
+/* main.css */
+.main {
+    flex: 1;
+    padding: 20px;
+    background-color: #ddeaeb; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2em; /* Ejemplo de tamaño de fuente diferente */
+    line-height: 1.6; /* Line-height relativo */
+}
+
+.main h1 {
+    text-align: center; /* Alinea el título principal al centro */
+}

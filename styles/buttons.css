@@ -1,0 +1,33 @@
+/* buttons.css */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #337373; /* Verde Oscuro */
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #265d5d; /* Verde más oscuro */
+}
+
+.btn-primary {
+    background-color: #FF9A76; /* Naranja */
+}
+
+.btn-primary:hover {
+    background-color: #ff8050; /* Naranja más oscuro */
+}
+
+.btn-secondary {
+    background-color: #f7f4f4; /* Blanco */
+    color: #337373; /* Verde Oscuro */
+}
+
+.btn-secondary:hover {
+    background-color: #e0dddd; /* Blanco más oscuro */
+}

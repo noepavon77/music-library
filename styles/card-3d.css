@@ -1,0 +1,71 @@
+/* card-3d.css */
+.card-container {
+    width: 450px; /* Ancho específico de la tarjeta */
+    height: 800px; /* Altura específica de la tarjeta */
+    perspective: 1000px;
+    margin: 30px auto; /* Centra horizontalmente el contenedor */
+}
+
+.card {
+    width: 450px; /* Ancho específico de la tarjeta */
+    height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    margin-bottom: 50px; /* Espacio entre cada tarjeta */
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Para colocar la imagen encima y el texto debajo */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    backface-visibility: hidden;
+    border-radius: 8px;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #f7f4f3 0%, #d3b3af 100%);
+    color: white;
+    z-index: 1; /* Coloca la cara frontal encima de la cara trasera */
+}
+
+.card-back {
+    background: linear-gradient(135deg, #e7d4cd 0%, #af9997 100%);
+    color: white;
+    transform: rotateY(180deg);
+    z-index: 0; /* Coloca la cara trasera detrás de la cara frontal */
+}
+
+.card-face img {
+    width: 100%;
+    height: auto; /* Ajusta la altura automáticamente */
+    max-height: calc(100% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
+    object-fit: contain; /* Ajusta la imagen para que quepa completamente dentro del contenedor sin recortar */
+    border-radius: 8px; /* Redondea las esquinas de la imagen para que coincidan con las esquinas de la tarjeta */
+    margin-bottom: 20px; /* Espacio adicional bajo la imagen */
+}
