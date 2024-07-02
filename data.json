@@ -1,6 +1,7 @@
 [
     {
         "name": "Radiohead",
+        "image": "assets/radioHphoto.jpg",
         "albums": [
             {
                 "title": "The King of Limbs",
@@ -100,7 +101,7 @@
     },
     {
         "name": "Portishead",
-        
+        "image": "assets/PortisheadWEB.jpg",
         "albums": [
             {
                 "title": "Dummy",
@@ -208,7 +209,7 @@
     },
     {
         "name": "Rammstein",
-        
+        "image": "assets/rammstein-2022-banda.jpg",
         "albums": [
             {
                 "title": "Herzeleid",
@@ -317,6 +318,7 @@
     },
     {
         "name": "Taylor Swift",
+        "image": "assets/taylorswift.jpg",
         "albums": [
             {
                 "title": "Fearless",
@@ -379,7 +381,7 @@
             },
             {
                 "title": "1989",
-                "coverImage":"assets/taylor1989.jpg",
+                "coverImage":"assets/1989.jpeg",
 
                 "songs": [
                     {

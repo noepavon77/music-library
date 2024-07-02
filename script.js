@@ -55,13 +55,11 @@ const populateCarousel = (artists) => {
     let carouselInner = document.querySelector(".carousel-inner");
     let angle = 360 / artists.length;
     artists.forEach((artist, index) => {
-        artist.albums.forEach(album => {
-            let item = document.createElement("div");
-            item.classList.add("carousel-item");
-            item.style.transform = `rotateY(${index * angle}deg) translateZ(300px)`;
-            item.innerHTML = `<img src="${album.coverImage}" alt="${album.title}">`;
-            carouselInner.appendChild(item);
-        });
+        let item = document.createElement("div");
+        item.classList.add("carousel-item");
+        item.style.transform = `rotateY(${index * angle}deg) translateZ(300px)`;
+        item.innerHTML = `<img src="${artist.image}" alt="${artist.name}">`;
+        carouselInner.appendChild(item);
     });
 };
 
@@ -256,14 +254,15 @@ const displayArtistInfo = (artist) => {
 
 const displayAlbumInfo = (album) => {
     artistInfo.innerHTML = `
+    <h1 class="header__title">Album</h1>
     <div class="music-card">
         <div class="album-info">
-            <h1 class="album-title">${album.album.title}</h1> 
-            <span class="artist-name">by ${album.artist}</span>
+            <h1 class="album-title">${album.album.title}</h1>
         </div>
         <img src="${album.album.coverImage}" />
         <div>
         <span class="album-description">${album.album.description}</span>
+        <span class="artist-name">by ${album.artist}</span>
         </div>
         ${album.album.songs.map(song => `
             <div class="song-info">
@@ -277,17 +276,18 @@ const displayAlbumInfo = (album) => {
 
 const displaySongInfo = (song) => {
     artistInfo.innerHTML = `
+    <h1 class="header__title">Song</h1>
     <div class="music-card">
         <div class="album-info">
-        <span class="album-title">  ${song.song.title}</span>
+        <h1 class="header__title">${song.song.title}</h1>
         </div>
-        
         <img src="${song.album.coverImage}" class="album-cover" />
         <div class="song-info">
-        
-        <h1 class="album-title">Album ${song.album.title}</h1> 
-        <span class="artist-name"> by ${song.artist}</span> 
-           
+        <span class="artist-name">by ${song.artist}</span>
+        </div>
+        <h2 class="song-title">Album</h2>
+        <div class="song-info">
+        <h1 class="album-title">${song.album.title}</h1> 
         </div>
         <div class="album-description">
             <p>${song.album.description}</p> 
