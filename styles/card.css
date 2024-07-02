@@ -1,0 +1,82 @@
+/* card.css */
+.music-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #deeaf1 0%, #c9d3e4 100%);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px #337373;
+}
+
+.music-card:hover {
+    border: 2px solid #dcecce;
+    box-shadow: 0 0 25px rgb(106, 128, 187), 0 0 50px rgba(255, 255, 255, 0.7);
+}
+
+.music-card img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin: 30px 0;
+}
+
+.album-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.album-title {
+    font-size: 3em;
+    margin: 0;
+    color: rgb(10, 10, 10);
+}
+
+.album-cover {
+    margin: 30px 0;
+    max-width: 100%;
+}
+
+.album-description {
+    margin-top: 25px;
+    text-align: justify;
+    color: rgb(10, 10, 10);
+}
+
+.artist-name {
+    font-size: 1em;
+    color: #215252;
+    margin-left: 300px;
+}
+
+.song-info {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    color: rgb(10, 10, 10);
+}
+
+.song-title {
+    margin-right: 10px;
+    color: rgb(3, 3, 3);
+}
+
+.song-length {
+    margin-left: 10px;
+    color: rgb(7, 7, 7);
+}
+
+.header__title {
+    margin-bottom: var(--margin-3);
+    font-size: clamp(1rem, 6vw, 2rem);
+    color: rgb(7, 7, 7);
+}

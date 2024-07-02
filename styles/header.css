@@ -1,0 +1,37 @@
+/* header.css */
+.header {
+    background-color: #75dfdf; 
+    padding: 15px 0;
+    height: 50px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-logo img {
+    width: 25px;
+    height: auto;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #0e0f0f;
+    font-size: 16px;
+    font-weight: bold;
+}
