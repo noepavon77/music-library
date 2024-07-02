@@ -1,434 +1,432 @@
-* 
-/*fORMATO DE PAGINA*/
+/* Estilos Generales */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-  body {
+body {
     font-family: 'Times New Roman', Times, serif;
-    background-color: #ffffff; /* White */
+    background-color: #ffffff; /* Blanco */
     color: #333333;
-    line-height: 1.6;
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
-  }
-  .content {
+}
+
+.content {
     text-align: center;
-    max-width: 800px; /* Ancho máximo del contenido */
+    margin: 0 auto ; /* Ancho máximo del contenido */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
 
-  .header {
-    background-color: #FF9A76; /* Peach */
+/* Encabezado */
+.header {
+    background-color: #75dfdf; 
     padding: 15px 0;
-  }
+    height: 50px;
 
-  .header-container {
+
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-  }
+}
 
-  .header-logo img {
-    width: 100px;
+.header-logo img {
+    width: 25px;
     height: auto;
-  }
+}
 
-  .header-nav ul {
+.header-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-  }
+}
 
-  .header-nav li {
+.header-nav li {
     display: inline-block;
     margin-right: 20px;
-  }
+}
 
-  .header-nav a {
+.header-nav a {
     text-decoration: none;
-    color: #333333;
+    color: #0e0f0f;
     font-size: 16px;
     font-weight: bold;
-  }
+}
 
-
-
-  .main {
+/* Cuerpo Principal */
+.main {
     flex: 1;
     padding: 20px;
-    margin: 20px;
-    background-color: #f0e6e2; 
-    height: 100vh;
+    background-color: #ddeaeb; 
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  /*PIE*/
-  .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #337373; /* Dark Green */
+    font-size: 1.2em; /* Ejemplo de tamaño de fuente diferente */
+    line-height: 1.6; /* Line-height relativo */
+}
+
+.main h1 {
+    text-align: center; /* Alinea el título principal al centro */
+}
+
+/* Pie de Página */
+.footer {
+    background-color: #337373; 
     color: #ffffff;
     padding: 20px 0;
     text-align: center;
-  }
-  
-  .footer-container {
+    width: 100%;
+}
+
+.footer-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .footer-nav ul {
+}
+
+.footer-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-  }
-  
-  .footer-nav li {
+}
+
+.footer-nav li {
     display: inline-block;
     margin-right: 10px;
-  }
-  
-  .footer-nav a {
-    color: #080808;
+}
+
+.footer-nav a {
+    color: #acc6f7;
     text-decoration: none;
-  }
-  
-  .footer-nav a:hover {
+}
+
+.footer-nav a:hover {
     text-decoration: underline;
-  }
-/*INPUT*/
-        .input-container {
-            display: flex;
-            margin-bottom: 20px;
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-        }
+}
 
-        
-        .input-wrapper {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            background-color: #ffffff;
-            border: 1px solid #f7f4f4;
-            border-radius: 5px;
-            padding: 10px;
-        }
+/* Estilos para el Input */
+.input-container {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
 
-        input {
-            outline: none;
-            border: none;
-            background-color: transparent;
-            color: #000000;
-            font-size: 20px;
-            flex: 1;
-        }
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #f7f4f4;
+    border-radius: 5px;
+    padding: 10px;
+}
 
-        #suggestion {
-            width: inherit;
-            height: inherit;
-            position: absolute;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            font-size: 20px;
-            color: #868686;
-        }
+input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #000000;
+    font-size: 20px;
+    flex: 1;
+}
 
-        .dropdown {
-            position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            width: 100%;
-            max-height: 150px;
-            overflow-y: auto;
-            background-color:#FFEAD8;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            display: none;
-            z-index: 1;
-        }
+#suggestion {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 20px;
+    color: #868686;
+}
 
-        .dropdown-item {
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #070707;
-        }
+.dropdown {
+    position: absolute;
+    
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color:#f8fdfd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    z-index: 1;
+}
 
-        .dropdown-item:hover,
-        .dropdown-item.active {
-            background-color: #4e4d4d3d;
-        }
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #070707;
+}
 
-        .show {
-            display: block;
-        }
+.dropdown-item:hover,
+.dropdown-item.active {
+    background-color: #4e4d4d3d;
+}
 
-        #results{
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            color: rgb(8, 8, 8);
-        }
-        
-        #artistInfo {
-            width: 100%;
-            max-width: 500px;
-        }
-        
+.show {
+    display: block;
+}
 
-        .music-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #67BBEB;
-            border: 1px solid #337373;;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #337373;
-        }
+/* Resultados de Búsqueda y Sugerencias */
+#results {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(8, 8, 8);
+}
 
-        .music-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: linear-gradient(135deg, #deeaf1 0%, #c9d3e4 100%);
-            color: white;
-            border: 2px solid transparent;
-            border-radius: 10px;
-            transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-        }
-        
-        .music-card:hover {
-            border: 2px solid #dcecce;
-            box-shadow: 0 0 25px rgb(106, 128, 187), 0 0 50px rgba(255, 255, 255, 0.7);
-        }
-        
-        .music-card img {
-            width: 100%;
-            height: auto;
-            max-width: 400px;
-            margin: 30px 0;
-        }
-        
-        
-        .album-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            margin: 10px 0;
-        }
+#artistInfo {
+    width: 100%;
+    max-width: 500px;
+}
 
-        .album-title {
-            font-size: 3sem;
-            margin: 0;
-            color: rgb(10, 10, 10);
-        }
+/* Estilos para las Tarjetas de Música */
+.music-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #deeaf1 0%, #c9d3e4 100%);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px #337373;
+}
 
-        .artist-name {
-            font-size: 1em;
-            color: #215252;
-            margin-left: 350px;
-        }
+.music-card:hover {
+    border: 2px solid #dcecce;
+    box-shadow: 0 0 25px rgb(106, 128, 187), 0 0 50px rgba(255, 255, 255, 0.7);
+}
 
-        .album-cover {
-            margin: 30px 0;
-            max-width: 100%;
-        }
+.music-card img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin: 30px 0;
+}
+.album-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
 
-        .album-description {
-            margin-top: 25px;
-            text-align: justify;
-            color: rgb(10, 10, 10);
-        }
+.album-title {
+    font-size: 3sem;
+    margin: 0;
+    color: rgb(10, 10, 10);
+}
+.album-cover {
+    margin: 30px 0;
+    max-width: 100%;
+}
 
-        .song-info {
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-weight: bold;
-            color: rgb(10, 10, 10);
-        }
+.album-description {
+    margin-top: 25px;
+    text-align: justify;
+    color: rgb(10, 10, 10);
+}
 
-        .song-title {
-            margin-right: 10px;
-            color: rgb(3, 3, 3);
+.artist-name {
+    font-size: 1em;
+    color: #215252;
+    margin-left: 300px;
+}
 
-        }
+.song-info {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    color: rgb(10, 10, 10);
+}
 
-        .song-length {
-            margin-left: 10px;
-            color: rgb(7, 7, 7);
-        }
+.song-title {
+    margin-right: 10px;
+    color: rgb(3, 3, 3);
 
-        #searchButton {
-            padding: 8px 15px;
-            background-color: #6584a5;
-            color:#466381;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+}
 
-        #searchButton:hover {
-            background-color: #191a1b;
-        }
+.song-length {
+    margin-left: 10px;
+    color: rgb(7, 7, 7);
+}
+.header__title {
+    margin-bottom: var(--margin-3);
+    font-size: clamp(1rem, 6vw, 2rem);
+    color: rgb(7, 7, 7);
+}
+/* Estilos para las Tarjetas 3D de Artistas */
+.card-container {
+    width: 450px; /* Ancho específico de la tarjeta */
+    height: 800px; /* Altura específica de la tarjeta */
+    perspective: 1000px;
+    margin: 30px auto; /* Centra horizontalmente el contenedor */
+}
 
-        .header__title {
-            margin-bottom: var(--margin-3);
-            font-size: clamp(1rem, 6vw, 2rem);
-            color: rgb(7, 7, 7);
-        }
+.card {
+    width: 450px; /* Ancho específico de la tarjeta */
+    height: 800px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    margin-bottom: 50px; /* Espacio entre cada tarjeta */
+}
 
-        /* 3D Carousel */
-        .carousel {
-            width: 100%;
-            max-width: 300px;
-            perspective: 1000px;
-            margin-bottom: 20px;
-        }
+.card:hover {
+    transform: rotateY(180deg);
+}
 
-        .carousel-inner {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate 20s infinite linear;
-        }
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Para colocar la imagen encima y el texto debajo */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
 
-        .carousel-item {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-color: #eee8e8;
-            border: 1px solid #0f0f0f;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(223, 228, 223, 0.5);
-            transition: transform 0.5s;
-        }
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    backface-visibility: hidden;
+    border-radius: 8px;
+}
 
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.card-front {
+    background: linear-gradient(135deg, #f7f4f3 0%, #d3b3af 100%);
+    color: white;
+    z-index: 1; /* Coloca la cara frontal encima de la cara trasera */
+}
 
-        @keyframes rotate {
-            from {
-                transform: rotateY(0deg);
-            }
+.card-back {
+    background: linear-gradient(135deg, #e7d4cd 0%, #af9997 100%);
+    color: white;
+    transform: rotateY(180deg);
+    z-index: 0; /* Coloca la cara trasera detrás de la cara frontal */
+}
 
-            to {
-                transform: rotateY(360deg);
-            }
-        }
-        /* card artista*/
-        .card-container {
-            width: 450px; /* Ancho específico de la tarjeta */
-            height: 800px; /* Altura específica de la tarjeta */
-            perspective: 1000px;
-            margin: 30px auto; /* Centra horizontalmente el contenedor */
-        }
-        
-        .card {
-            width: 450px; /* Ancho específico de la tarjeta */
-            height: 800px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-            margin-bottom: 50px; /* Espacio entre cada tarjeta */
-        }
-        
-        .card:hover {
-            transform: rotateY(180deg);
-        }
-        
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column; /* Para colocar la imagen encima y el texto debajo */
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-            backface-visibility: hidden;
-            border-radius: 8px;
-        }
-        
-        .card-front {
-            background: linear-gradient(135deg, #f7f4f3 0%, #d3b3af 100%);
-            color: white;
-            z-index: 1; /* Coloca la cara frontal encima de la cara trasera */
-        }
-        
-        .card-back {
-            background: linear-gradient(135deg, #e7d4cd 0%, #af9997 100%);
-            color: white;
-            transform: rotateY(180deg);
-            z-index: 0; /* Coloca la cara trasera detrás de la cara frontal */
-        }
-        
-        .card-face img {
-            width: 100%;
-            height: auto; /* Ajusta la altura automáticamente */
-            max-height: calc(100% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
-            object-fit: contain; /* Ajusta la imagen para que quepa completamente dentro del contenedor sin recortar */
-            border-radius: 8px; /* Redondea las esquinas de la imagen para que coincidan con las esquinas de la tarjeta */
-            margin-bottom: 20px; /* Espacio entre la imagen y la descripción */
-        }
-        
-        .card-back-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .card-back p {
-            margin: 10px 0; /* Espacio entre los párrafos */
-        }
-        
-        
-        
+.card-face img {
+    width: 100%;
+    height: auto; /* Ajusta la altura automáticamente */
+    max-height: calc(100% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
+    object-fit: contain; /* Ajusta la imagen para que quepa completamente dentro del contenedor sin recortar */
+    border-radius: 8px; /* Redondea las esquinas de la imagen para que coincidan con las esquinas de la tarjeta */
+    margin-bottom: 20px; /* Espacio adicional bajo la imagen */
+}
+
+/* Estilos para el Carrusel 3D */
+.carousel {
+    width: 100%;
+    max-width: 150px;
+    perspective: 1000px;
+    margin-bottom: 25px;
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #eee8e8;
+    border: 1px solid #0f0f0f;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(223, 228, 223, 0.5);
+    transition: transform 0.5s;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+
+
+/* Estilos de los Botones */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #337373; /* Verde Oscuro */
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #265d5d; /* Verde más oscuro */
+}
+
+.btn-primary {
+    background-color: #FF9A76; /* Naranja */
+}
+
+.btn-primary:hover {
+    background-color: #ff8050; /* Naranja más oscuro */
+}
+
+.btn-secondary {
+    background-color: #f7f4f4; /* Blanco */
+    color: #337373; /* Verde Oscuro */
+}
+
+.btn-secondary:hover {
+    background-color: #e0dddd; /* Blanco más oscuro */
+}
