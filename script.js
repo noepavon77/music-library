@@ -1,13 +1,14 @@
-let input = document.getElementById("input");
-let searchButton = document.getElementById("searchButton");
-let results = document.getElementById("results");
-let artistInfo = document.getElementById("artistInfo");
-let dropdown = document.getElementById("dropdown");
-let suggestion = document.getElementById("suggestion");
+const input = document.getElementById("input");
+input.setAttribute("autocomplete", "off"); // Desactivar autocompletado del navegador
+const searchButton = document.getElementById("searchButton");
+const results = document.getElementById("results");
+const artistInfo = document.getElementById("artistInfo");
+const dropdown = document.getElementById("dropdown");
+const suggestion = document.getElementById("suggestion");
 let selectedIndex = -1;
 let artists = [];
 let words = [];
-
+// Load data from JSON file
 window.onload = () => {
     input.value = "";
     clearResults();
@@ -30,6 +31,7 @@ window.onload = () => {
         .catch(error => console.error('Error fetching the JSON data:', error));
 };
 
+// Routine functions
 const clearResults = () => {
     results.innerHTML = "";
     results.style.display = "none";
@@ -51,36 +53,58 @@ const clearDropdown = () => {
     selectedIndex = -1;
 };
 
+// Carousel main
 const populateCarousel = (artists) => {
-    let carouselInner = document.querySelector(".carousel-inner");
-    let angle = 360 / artists.length;
+    const carouselInner = document.querySelector(".carousel-inner");
+    if (!carouselInner) {
+        console.error('carousel-inner element not found');
+        return;
+    }
+    const angle = 360 / artists.length;
     artists.forEach((artist, index) => {
-        let item = document.createElement("div");
+        const item = document.createElement("div");
         item.classList.add("carousel-item");
-        item.style.transform = `rotateY(${index * angle}deg) translateZ(300px)`;
+        item.style.transform = `rotateY(${index * angle}deg) translateZ(250px)`;
         item.innerHTML = `<img src="${artist.image}" alt="${artist.name}">`;
         carouselInner.appendChild(item);
     });
 };
+// Event handlers
+searchButton.addEventListener("click", () => {
+    clearSuggestion();
+    clearDropdown();    
+    const query = input.value.toLowerCase().trim();
+    console.log("entro a click:", query);
 
+    // Realizar la búsqueda con el valor actual del input
+    performSearch(query);
+});
+
+dropdown.addEventListener("mouseover", (e) => {
+    clearSuggestion();
+    const target = e.target;
+    if (target.classList.contains("dropdown-item")) {
+        input.value = target.textContent.trim();
+    }
+});
+//"receives the inputs".
 input.addEventListener("input", (e) => {
     clearDropdown();
     clearResults();
     clearArtistInfo();
 
-    let query = input.value.toLowerCase().trim();
+    const query = input.value.toLowerCase().trim();
 
     if (query.length === 0) {
         clearSuggestion();
         return;
     }
-
-    let regex = new RegExp("^" + query, "i");
-    let matches = words.filter(word => regex.test(word) && word !== query);
+    const regex = new RegExp("^" + query, "i");
+    const matches = words.filter(word => regex.test(word) && word !== query);
 
     if (matches.length > 0) {
-        let closestMatch = matches[0];
-        let highlightedSuggestion = closestMatch.substring(query.length);
+        const closestMatch = matches[0];
+        const highlightedSuggestion = closestMatch.substring(query.length);
         suggestion.innerHTML = highlightedSuggestion;
         suggestion.style.display = "block";
         showDropdown(matches);
@@ -91,8 +115,8 @@ input.addEventListener("input", (e) => {
 
 const showDropdown = (matches) => {
     dropdown.innerHTML = "";
-    matches.forEach((word, index) => {
-        let item = document.createElement("div");
+    matches.forEach((word) => {
+        const item = document.createElement("div");
         item.classList.add("dropdown-item");
         item.textContent = word;
         item.addEventListener("click", () => {
@@ -106,47 +130,43 @@ const showDropdown = (matches) => {
 };
 
 input.addEventListener("keydown", (e) => {
-    let items = document.querySelectorAll(".dropdown-item");
+    const items = document.querySelectorAll(".dropdown-item");
 
-    if (e.keyCode === 40) {
+    if (e.keyCode === 40 || e.keyCode === 38) { // Arrow down or up
         e.preventDefault();
-        selectedIndex = (selectedIndex + 1) % items.length;
+        selectedIndex = (e.keyCode === 40) ? (selectedIndex + 1) % items.length : (selectedIndex - 1 + items.length) % items.length;
         updateActiveItem(items);
-    } else if (e.keyCode === 38) {
+        clearSuggestion();
+        if (items[selectedIndex]) {
+            input.value = items[selectedIndex].textContent;
+            items[selectedIndex].scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+    } else if (e.keyCode === 13) { // Enter
         e.preventDefault();
-        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
-        updateActiveItem(items);
-    } else if (e.keyCode === 13) { // Si la tecla presionada es Enter
-        e.preventDefault();
-        if (selectedIndex > -1) {
+        if (selectedIndex > -1 && items[selectedIndex]) {
             input.value = items[selectedIndex].textContent;
             clearSuggestion();
             clearDropdown();
         } else if (suggestion.textContent !== "") {
-            input.value = input.value + suggestion.textContent.trim();
+            input.value += suggestion.textContent.trim();
             clearSuggestion();
             clearDropdown();
         }
-        // Simular clic en el botón de búsqueda
+        // Simulate search button click
         searchButton.click();
-    } else if (e.keyCode === 32 || e.keyCode === 39) { // Espacio o flecha derecha
+    } else if (e.keyCode === 39) { // Right arrow
         e.preventDefault();
         if (suggestion.textContent !== "") {
-            input.value = input.value + suggestion.textContent.trim();
+            input.value += suggestion.textContent.trim();
             clearSuggestion();
             clearDropdown();
         }
     }
 });
 
-
 const updateActiveItem = (items) => {
     items.forEach((item, index) => {
-        if (index === selectedIndex) {
-            item.classList.add("active");
-        } else {
-            item.classList.remove("active");
-        }
+        item.classList.toggle("active", index === selectedIndex);
     });
 };
 
@@ -156,26 +176,22 @@ document.addEventListener("click", (e) => {
     }
 });
 
-input.addEventListener("focus", (e) => {
-    input.value = "";
+input.addEventListener("focus", () => {
     clearSuggestion();
     clearDropdown();
 });
 
-searchButton.addEventListener("click", () => {
+// Search and display results
+const performSearch = (query) => {
     clearResults();
     clearArtistInfo();
-    clearSuggestion();
-    clearDropdown();
 
-    let query = input.value.toLowerCase().trim();
-    
     if (query.length === 0) {
-        results.innerHTML = "Please enter a valid search query."
+        results.innerHTML = "Please enter a valid search query.";
         results.style.display = "block";
         return;
     }
-
+    
     let foundArtist = artists.find(artist => artist.name.toLowerCase() === query);
     if (foundArtist) {
         displayArtistInfo(foundArtist);
@@ -194,9 +210,10 @@ searchButton.addEventListener("click", () => {
         return;
     }
 
-    results.innerHTML = "No matching artist, album, or song found.";
+    // Handle no results found
+    results.innerHTML = "No results found.";
     results.style.display = "block";
-});
+};
 
 const findSong = (query) => {
     for (let artist of artists) {
@@ -219,80 +236,71 @@ const findAlbum = (query) => {
     }
     return null;
 };
-
+//This section is responsible for displaying the search results according to each option, artist, song, album
 const displayArtistInfo = (artist) => {
     artistInfo.innerHTML = `<h1 class="header__title">${artist.name}</h1>`;
+    artistInfo.innerHTML += `<div class="card-container"></div>`;
+    const cardContainer = artistInfo.querySelector('.card-container');
     artist.albums.forEach(album => {
-        artistInfo.innerHTML += `
-            <div class="card-container">
-                <div class="card-container">
-                    <div class="card">
-                        <div class="card-face card-front">
-                            
-                            <img src="${album.coverImage}" alt="${album.title} cover"/>
-                            <div>
-                            <span class="album-description">${album.description}</span>
-                            </div>
-                        </div>
-                        <div class="card-face card-back">
-                            <h1>Song</h1>
-                            ${album.songs.map(song => `
-                                <div class="song-info">
-                                    <span class="song-title">${song.title}</span>
-                                    <span class="song-length">${song.length}</span>
-                                </div>
-                            `).join('')}
-                        </div>
+        cardContainer.innerHTML += `
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="${album.coverImage}" alt="${album.title} cover"/>
+                    <div>
+                        <p class="album-description">${album.description}</p>
                     </div>
                 </div>
+                <div class="card-face card-back">
+                    <h1>Song</h1>
+                    ${album.songs.map(song => `
+                        <div class="song-info">
+                            <span class="song-title">${song.title}</span>
+                            <span class="song-length">${song.length}</span>
+                        </div>
+                    `).join('')}
+                </div>
             </div>`;
-    });
-    artistInfo.style.display = "block";
-};
-
-        
-
-const displayAlbumInfo = (album) => {
+});
+    
+artistInfo.style.display = "block";};
+    const displayAlbumInfo = (album) => {
     artistInfo.innerHTML = `
-    <h1 class="header__title">Album</h1>
-    <div class="music-card">
-        <div class="album-info">
-            <h1 class="album-title">${album.album.title}</h1>
-        </div>
-        <img src="${album.album.coverImage}" />
-        <div>
-        <span class="album-description">${album.album.description}</span>
-        <span class="artist-name">by ${album.artist}</span>
-        </div>
-        ${album.album.songs.map(song => `
-            <div class="song-info">
-                <span class="song-title">${song.title}</span>
-                <span class="song-length">${song.length}</span>
+        <div class="music-card">
+            <div class="album-info">
+                <h1 class="album-title">${album.album.title}</h1>
             </div>
-        `).join('')}
-    </div>`;
+            <img src="${album.album.coverImage}" />
+            <div>
+            <span class="artist-name">by ${album.artist}</span>
+            <span class="album-description">${album.album.description}</span>
+            </div>
+            ${album.album.songs.map(song => `
+                <div class="song-info">
+                    <span class="song-title">${song.title}</span>
+                    <span class="song-length">${song.length}</span>
+                </div>
+            `).join('')}
+        </div>`;
     artistInfo.style.display = "block";
 };
-
+    
 const displaySongInfo = (song) => {
     artistInfo.innerHTML = `
-    <h1 class="header__title">Song</h1>
-    <div class="music-card">
-        <div class="album-info">
-        <h1 class="header__title">${song.song.title}</h1>
-        </div>
-        <img src="${song.album.coverImage}" class="album-cover" />
-        <div class="song-info">
-        <span class="artist-name">by ${song.artist}</span>
-        </div>
-        <h2 class="song-title">Album</h2>
-        <div class="song-info">
-        <h1 class="album-title">${song.album.title}</h1> 
-        </div>
-        <div class="album-description">
-            <p>${song.album.description}</p> 
-        </div>
-        
-    </div>`;
+        <h1 class="header__title">Song</h1>
+        <div class="music-card">
+            <div class="album-info">
+            <h1 class="header__title">${song.song.title}</h1>
+            </div>
+            <img src="${song.album.coverImage}" class="album-cover" />
+            <div class="song-info">
+            <span class="artist-name">by ${song.artist}</span>
+            </div>
+            <div class="song-info">
+            <h1 class="album-title">${song.album.title}</h1> 
+            </div>
+            <div class="album-description">
+                <p>${song.album.description}</p> 
+            </div>
+        </div>`;
     artistInfo.style.display = "block";
 };

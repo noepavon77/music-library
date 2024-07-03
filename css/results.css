@@ -1,0 +1,71 @@
+/* Search Results and Suggestions */
+#results {
+    padding: 10px;
+    font-size: 18px;
+    color: rgb(8, 8, 8);
+}
+
+#artistInfo {
+    width: 100%;
+    max-width: 500px;
+}
+
+.album-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.album-title {
+    font-size: 3rem;
+    margin: 0;
+    color: rgb(0, 0, 0);
+}
+
+.album-cover {
+    margin: 30px 0;
+    max-width: 100%;
+}
+
+.album-description {
+    margin-top: 10px;
+    color: rgb(10, 10, 10);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.artist-name {
+    font-size: 1.5em;
+    color: #e9e1e1;
+    margin-left: 250px;
+    margin-trim: 10px;
+}
+
+.song-info {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    color: rgb(10, 10, 10);
+}
+
+.song-title {
+    margin-right: 10px;
+    color: rgb(3, 3, 3);
+}
+
+.song-length {
+    margin-left: 10px;
+    color: rgb(7, 7, 7);
+}
+
+.header__title {
+    margin-bottom: var(--margin-3);
+    font-size: clamp(1rem, 6vw, 2rem);
+    color: rgb(0, 0, 0);
+}
