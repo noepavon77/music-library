@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,47 +10,41 @@
     <title>Music music library </title>
 
 </head>
-<header class="header">
-    <div class="header-container">
-      <div class="header-logo">
-        <img src="assets/logo.png" alt="Logotipo">
-
-      </div>
-      <nav class="header-nav">
-        <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Acerca de</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
   <body>
-  <main class="main">
-    <h2 class="header__title">Music Finder</h2>
-    <div class="carousel">
-        <div class="carousel-inner">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-logo">
+                <img src="assets/logo.png" alt="Logotipo">
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-    <div class="input-container">
-        <div class="input-wrapper">
-            <input type="text" id="input" placeholder="Enter artist, song, or album...">
-            <div id="suggestion"></div>
+    </header>
+    <main class="main">
+        <h2 class="header__title">Music Finder</h2>
+        <div class="carousel">
+            <div class="carousel-inner">
+            </div>
         </div>
-        <button id="searchButton">Search</button>
-        <div class="dropdown" id="dropdown"></div>
-    </div>
-    <div id="results"></div>
-    <div id="artistInfo"></div>
-</main> 
-</body>
-    <footer class="footer">
-        <div class="footer-container">
-          <p>&copy; 2024 Nombre de tu Sitio. Todos los derechos reservados.</p>
-          <ul class="footer-nav">
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos de uso</a></li>
-          </ul>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <input type="text" id="input" placeholder="Enter artist, song, or album...">
+                <div id="suggestion"></div>
+            </div>
+            <button class="boton" id="searchButton">Search</button>
+            <div class="dropdown" id="dropdown"></div>
         </div>
-      </footer>
-</html>
+        <div style="text-align: center;">
+          <div id="results"></div>
+      </div>
+        
+      </main>
+      <div id="artistInfo" class="content"></div>
+    <script src="script.js"></script>
+    </body>
+    </html>

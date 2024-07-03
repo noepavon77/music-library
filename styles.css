@@ -10,17 +10,23 @@ body {
     background-color: #ffffff; /* Blanco */
     color: #333333;
     margin: 0;
-    display: flex;
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 100vh;
+
 }
 
 .content {
-    text-align: center;
-    margin: 0 auto ; /* Ancho máximo del contenido */
+    display: flex;
+    margin: 0 20%;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* Ejemplo de ancho máximo */
+}
+
+@media (max-width: 700px) {
+    .content {
+        padding: 5px;
+    }
 }
 
 /* Encabezado */
@@ -65,7 +71,7 @@ body {
 
 /* Cuerpo Principal */
 .main {
-    flex: 1;
+    
     padding: 20px;
     background-color: #ddeaeb; 
     display: flex;
@@ -78,43 +84,29 @@ body {
 .main h1 {
     text-align: center; /* Alinea el título principal al centro */
 }
-
-/* Pie de Página */
-.footer {
-    background-color: #337373; 
-    color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    width: 100%;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-nav li {
+/*boton*/ 
+.boton {
     display: inline-block;
-    margin-right: 10px;
-}
-
-.footer-nav a {
-    color: #acc6f7;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
     text-decoration: none;
-}
+    color: #eee8e8;
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
 
-.footer-nav a:hover {
-    text-decoration: underline;
-}
+  .boton:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .boton:active {
+    background-color: #003d7a;
+    border-color: #003d7a;}
 
 /* Estilos para el Input */
 .input-container {
@@ -181,11 +173,13 @@ input {
 .dropdown-item:hover,
 .dropdown-item.active {
     background-color: #4e4d4d3d;
+    font-weight: bold
 }
 
 .show {
     display: block;
 }
+
 
 /* Resultados de Búsqueda y Sugerencias */
 #results {
@@ -198,9 +192,11 @@ input {
 #artistInfo {
     width: 100%;
     max-width: 500px;
+
 }
 
 /* Estilos para las Tarjetas de Música */
+
 .music-card {
     display: flex;
     flex-direction: column;
@@ -213,7 +209,14 @@ input {
     border-radius: 10px;
     transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
     box-shadow: 0px 0px 10px #337373;
+    max-width: 100%; /* Ajustar al ancho completo del contenedor padre */
+
+    /* Ajustes adicionales para dispositivos móviles */
+    @media (max-width: 650px) {
+        padding: 10px;
+    }
 }
+
 
 .music-card:hover {
     border: 2px solid #dcecce;
@@ -245,15 +248,21 @@ input {
 }
 
 .album-description {
-    margin-top: 25px;
-    text-align: justify;
+    margin-top: 10px;
     color: rgb(10, 10, 10);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
 }
 
+
 .artist-name {
-    font-size: 1em;
+    font-size: 1.5em;
     color: #215252;
-    margin-left: 300px;
+    margin-left: 250px;
+    margin-trim: 10px;
+
 }
 
 .song-info {
@@ -282,20 +291,32 @@ input {
 }
 /* Estilos para las Tarjetas 3D de Artistas */
 .card-container {
-    width: 450px; /* Ancho específico de la tarjeta */
-    height: 800px; /* Altura específica de la tarjeta */
+    width: 850px; /* Ancho específico de la tarjeta */
+    height: 850px; /* Altura específica de la tarjeta */
     perspective: 1000px;
-    margin: 30px auto; /* Centra horizontalmente el contenedor */
-}
+    gap: 40px;
+    display: flex;
+    margin: 10px auto; /* Centra vertical el contenedor */
+    justify-items: center; 
 
+}
 .card {
-    width: 450px; /* Ancho específico de la tarjeta */
-    height: 800px;
+    width: 500px; /* Ancho específico de la tarjeta */
+    height: 750px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.5s;
-    margin-bottom: 50px; /* Espacio entre cada tarjeta */
+    margin-bottom: 30px; /* Espacio entre cada tarjeta */
+    @media (max-width: 360px) {
+            display: flex;
+            justify-content: center; /* Centrar contenido horizontalmente en dispositivos móviles */
+            align-items: center; /* Centrar contenido verticalmente en dispositivos móviles */
+            padding: 10px;
+            flex-basis: calc(50% - 20px);
+        }
+    
 }
+
 
 .card:hover {
     transform: rotateY(180deg);
@@ -310,10 +331,7 @@ input {
     overflow: hidden;
     display: flex;
     flex-direction: column; /* Para colocar la imagen encima y el texto debajo */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .card-front, .card-back {
@@ -324,21 +342,29 @@ input {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-align: center;
     padding: 20px;
     backface-visibility: hidden;
     border-radius: 8px;
+   
 }
 
 .card-front {
-    background: linear-gradient(135deg, #f7f4f3 0%, #d3b3af 100%);
-    color: white;
+    background-color: rgba(241, 233, 233, 0.336); /* Color de fondo semitransparente */
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Aplica un desenfoque */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    /*background: linear-gradient(135deg, #f7f4f3 0%, #d3b3af 100%);*/
+   /* color: white;*/
     z-index: 1; /* Coloca la cara frontal encima de la cara trasera */
 }
 
 .card-back {
-    background: linear-gradient(135deg, #e7d4cd 0%, #af9997 100%);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.5); /* Color de fondo semitransparente */
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* Aplica un desenfoque */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+   /* background: linear-gradient(135deg, #e7d4cd 0%, #af9997 100%);*/
+    /*color: white;*/
     transform: rotateY(180deg);
     z-index: 0; /* Coloca la cara trasera detrás de la cara frontal */
 }
@@ -346,11 +372,16 @@ input {
 .card-face img {
     width: 100%;
     height: auto; /* Ajusta la altura automáticamente */
-    max-height: calc(100% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
+    max-height: calc(50% - 40px); /* Ajusta la altura máxima para evitar desbordamientos */
     object-fit: contain; /* Ajusta la imagen para que quepa completamente dentro del contenedor sin recortar */
     border-radius: 8px; /* Redondea las esquinas de la imagen para que coincidan con las esquinas de la tarjeta */
     margin-bottom: 20px; /* Espacio adicional bajo la imagen */
 }
+
+
+
+
+
 
 /* Estilos para el Carrusel 3D */
 .carousel {

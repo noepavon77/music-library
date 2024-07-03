@@ -8,6 +8,7 @@ let selectedIndex = -1;
 let artists = [];
 let words = [];
 
+// Abre el archivo
 window.onload = () => {
     input.value = "";
     clearResults();
@@ -30,6 +31,7 @@ window.onload = () => {
         .catch(error => console.error('Error fetching the JSON data:', error));
 };
 
+// Funciones de rutina
 const clearResults = () => {
     results.innerHTML = "";
     results.style.display = "none";
@@ -51,6 +53,7 @@ const clearDropdown = () => {
     selectedIndex = -1;
 };
 
+// Carrusel
 const populateCarousel = (artists) => {
     let carouselInner = document.querySelector(".carousel-inner");
     let angle = 360 / artists.length;
@@ -63,6 +66,7 @@ const populateCarousel = (artists) => {
     });
 };
 
+// Lo que ingresa
 input.addEventListener("input", (e) => {
     clearDropdown();
     clearResults();
@@ -89,6 +93,26 @@ input.addEventListener("input", (e) => {
     }
 });
 
+// Función de búsqueda
+searchButton.addEventListener("click", () => {
+    console.log("Click event triggered."); 
+    let query = input.value.toLowerCase().trim();
+    console.log("Query:", query); // Verifica el valor de la consulta
+    
+    console.log("Suggestion:", suggestion.style.display, suggestion.textContent.trim()); // Verifica el estado de la sugerencia
+    if (suggestion.style.display === "block" && suggestion.textContent.trim() !== "") {
+        // Si la sugerencia está visible, no hacer nada
+        // El usuario no seleccionó la sugerencia
+        results.innerHTML = "Please enter a valid search query.";
+    } else {
+        // Realizar la búsqueda con el valor actual del input
+        performSearch(query);
+    }
+    
+    clearSuggestion();
+    clearDropdown();
+});
+
 const showDropdown = (matches) => {
     dropdown.innerHTML = "";
     matches.forEach((word, index) => {
@@ -108,14 +132,20 @@ const showDropdown = (matches) => {
 input.addEventListener("keydown", (e) => {
     let items = document.querySelectorAll(".dropdown-item");
 
-    if (e.keyCode === 40) {
+    if (e.keyCode === 40) { // Flecha abajo
         e.preventDefault();
         selectedIndex = (selectedIndex + 1) % items.length;
         updateActiveItem(items);
-    } else if (e.keyCode === 38) {
+        clearSuggestion();
+        input.value = items[selectedIndex].textContent;
+        items[selectedIndex].scrollIntoView({ behavior: "smooth", block: "nearest" }); // Desplazar el elemento activo a la vista
+    } else if (e.keyCode === 38) { // Flecha arriba
         e.preventDefault();
         selectedIndex = (selectedIndex - 1 + items.length) % items.length;
         updateActiveItem(items);
+        clearSuggestion();
+        input.value = items[selectedIndex].textContent;
+        items[selectedIndex].scrollIntoView({ behavior: "smooth", block: "nearest" }); // Desplazar el elemento activo a la vista
     } else if (e.keyCode === 13) { // Si la tecla presionada es Enter
         e.preventDefault();
         if (selectedIndex > -1) {
@@ -129,7 +159,7 @@ input.addEventListener("keydown", (e) => {
         }
         // Simular clic en el botón de búsqueda
         searchButton.click();
-    } else if (e.keyCode === 32 || e.keyCode === 39) { // Espacio o flecha derecha
+    } else if (e.keyCode === 39) { // Flecha derecha
         e.preventDefault();
         if (suggestion.textContent !== "") {
             input.value = input.value + suggestion.textContent.trim();
@@ -138,7 +168,6 @@ input.addEventListener("keydown", (e) => {
         }
     }
 });
-
 
 const updateActiveItem = (items) => {
     items.forEach((item, index) => {
@@ -162,16 +191,13 @@ input.addEventListener("focus", (e) => {
     clearDropdown();
 });
 
-searchButton.addEventListener("click", () => {
+// Buscar y mostrar resultados
+const performSearch = (query) => {
     clearResults();
     clearArtistInfo();
-    clearSuggestion();
-    clearDropdown();
 
-    let query = input.value.toLowerCase().trim();
-    
     if (query.length === 0) {
-        results.innerHTML = "Please enter a valid search query."
+        results.innerHTML = "Please enter a valid search query.";
         results.style.display = "block";
         return;
     }
@@ -196,7 +222,7 @@ searchButton.addEventListener("click", () => {
 
     results.innerHTML = "No matching artist, album, or song found.";
     results.style.display = "block";
-});
+};
 
 const findSong = (query) => {
     for (let artist of artists) {
@@ -222,35 +248,35 @@ const findAlbum = (query) => {
 
 const displayArtistInfo = (artist) => {
     artistInfo.innerHTML = `<h1 class="header__title">${artist.name}</h1>`;
+    
+    // Creamos un solo contenedor card-container fuera del bucle
+    artistInfo.innerHTML += `<div class="card-container"></div>`;
+    const cardContainer = artistInfo.querySelector('.card-container');
+
     artist.albums.forEach(album => {
-        artistInfo.innerHTML += `
-            <div class="card-container">
-                <div class="card-container">
-                    <div class="card">
-                        <div class="card-face card-front">
-                            
-                            <img src="${album.coverImage}" alt="${album.title} cover"/>
-                            <div>
-                            <span class="album-description">${album.description}</span>
-                            </div>
-                        </div>
-                        <div class="card-face card-back">
-                            <h1>Song</h1>
-                            ${album.songs.map(song => `
-                                <div class="song-info">
-                                    <span class="song-title">${song.title}</span>
-                                    <span class="song-length">${song.length}</span>
-                                </div>
-                            `).join('')}
-                        </div>
+        cardContainer.innerHTML += `
+            <div class="card">
+                <div class="card-face card-front">
+                
+                    <img src="${album.coverImage}" alt="${album.title} cover"/>
+                    <div>
+                        <p class="album-description">${album.description}</p>
                     </div>
+                </div>
+                <div class="card-face card-back">
+                    <h1>Song</h1>
+                    ${album.songs.map(song => `
+                        <div class="song-info">
+                            <span class="song-title">${song.title}</span>
+                            <span class="song-length">${song.length}</span>
+                        </div>
+                    `).join('')}
                 </div>
             </div>`;
     });
+
     artistInfo.style.display = "block";
 };
-
-        
 
 const displayAlbumInfo = (album) => {
     artistInfo.innerHTML = `
@@ -258,11 +284,12 @@ const displayAlbumInfo = (album) => {
     <div class="music-card">
         <div class="album-info">
             <h1 class="album-title">${album.album.title}</h1>
+            <span class="artist-name">by ${album.artist}</span>
         </div>
         <img src="${album.album.coverImage}" />
+       
         <div>
         <span class="album-description">${album.album.description}</span>
-        <span class="artist-name">by ${album.artist}</span>
         </div>
         ${album.album.songs.map(song => `
             <div class="song-info">
@@ -281,11 +308,11 @@ const displaySongInfo = (song) => {
         <div class="album-info">
         <h1 class="header__title">${song.song.title}</h1>
         </div>
+        
         <img src="${song.album.coverImage}" class="album-cover" />
         <div class="song-info">
         <span class="artist-name">by ${song.artist}</span>
         </div>
-        <h2 class="song-title">Album</h2>
         <div class="song-info">
         <h1 class="album-title">${song.album.title}</h1> 
         </div>
